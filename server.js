@@ -1,38 +1,17 @@
 const http = require("http");
-
 // const routes = require("./routes");
+const express = require("express");
 
-const server = http.createServer((req,res) => {
-    const url = req.url;
-    if(url === '/'){
-        res.setHeader('Content-Type','text/html');
-        res.write('<html>');
-        res.write('<head><title>Assignment 1</title></head>');
-        res.write('<body><form action="/create-user" method="POST"><input type="text" name="usename"></input></form></body>');
-        res.write('</html>');
-        return res.end();
-    }
-    if(url === '/users'){
-        res.setHeader('Content-Type','text/html');
-        res.write('<head><title>Assignment 1</title></head>');
-        res.write('<body><ul><li>user 1</li><li>user 2</li></ul></body>');
-        res.write('</html>');
-    }
-    if(url === '/create-user'){
-        const body = []
-        req.on('data',chunk => {
-            body.push(chunk);
-        });
+const app = express();
 
-        req.on('end',()=>{
-            const parseBody = Buffer.concat(body).toString();
-            console.log(parseBody.split('=')[1]);
-        });
-        res.statusCode = 302;
-        res.setHeader('Location','/');
-        res.end();
-    }
-});
+app.use((req,res,next)=>{
+    console.log("in middleware")
+    next();
+})
 
-server.listen(8000);
+app.use((req,res,next) => {
+    console.log("In other middleware")
+})
+
+app.listen(8000)
 

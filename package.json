@@ -5,9 +5,15 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "start-server":"node server.js"
+    "start": "nodemon server.js",
+    "start-server": "node server.js"
   },
   "author": "Tarun",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
