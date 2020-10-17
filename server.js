@@ -1,17 +1,18 @@
 const http = require("http");
 // const routes = require("./routes");
 const express = require("express");
+const bodyParser = require("body-parser");
+
+const adminRoutes = require("./routes/admin");
+const shopRoutes = require("./routes/shop");
 
 const app = express();
+app.use(bodyParser.urlencoded({extended:true}))
 
-app.use((req,res,next)=>{
-    console.log("in middleware")
-    next();
-})
+app.use(adminRoutes);
 
-app.use((req,res,next) => {
-    console.log("In other middleware")
-})
+app.use(shopRoutes);
+
 
 app.listen(8000)
 
