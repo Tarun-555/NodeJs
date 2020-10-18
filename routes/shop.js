@@ -1,11 +1,11 @@
 const express = require("express");
+const path = require("path");
 
 const router = express.Router();
 
 
-router.use("/",(req,res,next) => {
-    console.log("In other middleware")
-    res.send("<h1>Hello</h1>")
+router.get("/",(req,res,next) => {
+    res.sendFile(path.join(__dirname,'../','views','shop.html'));
 });
 
 
